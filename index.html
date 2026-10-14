@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <title>Study Compass · Uzbekistan</title>
+        <style>
+            :root {
+                --bg: #f7f4ec;
+                --ink: #14213d;
+                --mut: #5b6478;
+                --card: #fff;
+                --line: #e3ddcf;
+                --ac: #0b9c92;
+                --ac2: #f2a900;
+                --on: #fff;
+                box-sizing: border-box;
+                padding-top: env(safe-area-inset-top,0px);
+                padding-bottom: env(safe-area-inset-bottom,0px)
+            }
+
+            @media(prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    --bg:#0e1a2b;
+                    --ink: #f1f5f9;
+                    --mut: #9aa7bd;
+                    --card: #16263d;
+                    --line: #26395a;
+                    --ac: #2dd4bf;
+                    --ac2: #fbbf24;
+                    --on: #06241f
+                }
+            }
+
+            :root[data-theme="dark"] {
+                --bg: #0e1a2b;
+                --ink: #f1f5f9;
+                --mut: #9aa7bd;
+                --card: #16263d;
+                --line: #26395a;
+                --ac: #2dd4bf;
+                --ac2: #fbbf24;
+                --on: #06241f
+            }
+
+            html {
+                scroll-padding-top: env(safe-area-inset-top,0px)
+            }
+
+            * {
+                box-sizing: border-box
+            }
+
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--ink);
+                font: 16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif
+            }
+
+            #app {
+                max-width: 480px;
+                margin: 0 auto;
+                padding: 16px 16px 48px
+            }
+
+            .top {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                margin-bottom: 20px
+            }
+
+            .bar,.bar2 {
+                flex: 1;
+                height: 8px;
+                background: var(--line);
+                border-radius: 9px;
+                overflow: hidden
+            }
+
+            .bar i,.bar2 i {
+                display: block;
+                height: 100%;
+                background: linear-gradient(90deg,var(--ac),var(--ac2));
+                transition: width .5s
+            }
+
+            .lg {
+                display: flex;
+                gap: 2px
+            }
+
+            .lg button,.ic {
+                border: 0;
+                background: var(--card);
+                color: var(--mut);
+                border-radius: 8px;
+                padding: 6px 8px;
+                font: 700 12px inherit;
+                cursor: pointer
+            }
+
+            .lg .on {
+                background: var(--ac);
+                color: var(--on)
+            }
+
+            .ic {
+                font-size: 16px
+            }
+
+            h1 {
+                font-size: 27px;
+                line-height: 1.2;
+                margin: 6px 0 16px;
+                font-weight: 800
+            }
+
+            .hint {
+                color: var(--mut);
+                font-size: 13px;
+                margin: -8px 0 14px
+            }
+
+            .scr {
+                animation: in .35s ease both
+            }
+
+            @keyframes in {
+                from {
+                    opacity: 0;
+                    transform: translateX(26px)
+                }
+            }
+
+            .g {
+                display: grid;
+                gap: 10px;
+                grid-template-columns: 1fr 1fr
+            }
+
+            .o {
+                border: 2px solid var(--line);
+                background: var(--card);
+                color: var(--ink);
+                border-radius: 16px;
+                padding: 14px 10px;
+                font: 600 15px inherit;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                transition: .15s;
+                text-align: center
+            }
+
+            .o b {
+                font-size: 28px;
+                font-weight: 400
+            }
+
+            .o:active {
+                transform: scale(.96)
+            }
+
+            .o.s {
+                border-color: var(--ac);
+                background: color-mix(in srgb,var(--ac) 16%,var(--card))
+            }
+
+            .big {
+                grid-template-columns: 1fr
+            }
+
+            .big .o {
+                flex-direction: row;
+                padding: 22px 18px;
+                font-size: 20px;
+                gap: 16px;
+                justify-content: flex-start
+            }
+
+            .big .o b {
+                font-size: 42px
+            }
+
+            .btn {
+                width: 100%;
+                margin-top: 16px;
+                border: 0;
+                border-radius: 16px;
+                padding: 15px;
+                background: var(--ac);
+                color: var(--on);
+                font: 800 16px inherit;
+                cursor: pointer
+            }
+
+            .btn.alt {
+                background: var(--card);
+                color: var(--ink);
+                border: 2px solid var(--line)
+            }
+
+            .r {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                background: var(--card);
+                border: 2px solid var(--line);
+                border-radius: 14px;
+                padding: 8px 12px;
+                margin-bottom: 8px
+            }
+
+            .r span {
+                font-size: 14px;
+                font-weight: 600
+            }
+
+            .d {
+                display: flex;
+                gap: 6px
+            }
+
+            .d i {
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                background: var(--line);
+                cursor: pointer;
+                transition: .15s
+            }
+
+            .d i.on {
+                background: var(--ac)
+            }
+
+            .xg h3 {
+                font-size: 13px;
+                margin: 14px 0 6px;
+                color: var(--mut)
+            }
+
+            .xg .g {
+                grid-template-columns: repeat(3,1fr)
+            }
+
+            .xg .o {
+                padding: 10px 6px;
+                font-size: 13px;
+                flex-direction: row;
+                justify-content: center
+            }
+
+            .xg .o b {
+                font-size: 16px
+            }
+
+            .card {
+                aspect-ratio: 9/14;
+                max-width: 340px;
+                margin: 0 auto;
+                border-radius: 28px;
+                background: linear-gradient(160deg,#0b9c92,#14213d 72%);
+                color: #fff;
+                padding: 26px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                animation: pop .6s cubic-bezier(.2,1.4,.4,1) both;
+                box-shadow: 0 18px 40px #0004
+            }
+
+            @keyframes pop {
+                from {
+                    opacity: 0;
+                    transform: scale(.8) rotate(-3deg)
+                }
+            }
+
+            .card small {
+                opacity: .75;
+                letter-spacing: .08em;
+                text-transform: uppercase;
+                font-size: 11px
+            }
+
+            .card .e {
+                font-size: 76px
+            }
+
+            .card h2 {
+                font-size: 34px;
+                margin: 4px 0
+            }
+
+            .card p {
+                margin: 0;
+                opacity: .9
+            }
+
+            .chip {
+                display: inline-block;
+                background: #fff2;
+                border-radius: 99px;
+                padding: 5px 11px;
+                font-size: 13px;
+                margin-top: 6px
+            }
+
+            .cmp {
+                background: #fff1;
+                border-radius: 14px;
+                padding: 10px 12px;
+                font-size: 14px
+            }
+
+            .sec {
+                background: var(--card);
+                border: 2px solid var(--line);
+                border-radius: 18px;
+                padding: 14px;
+                margin: 12px 0
+            }
+
+            .sec h2 {
+                font-size: 16px;
+                margin: 0 0 10px
+            }
+
+            .bl {
+                display: flex;
+                justify-content: space-between;
+                font-weight: 700;
+                font-size: 14px;
+                margin: 8px 0 4px
+            }
+
+            small {
+                color: var(--mut)
+            }
+
+            .flt {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 6px
+            }
+
+            .flt select {
+                width: 100%;
+                padding: 9px 6px;
+                border-radius: 10px;
+                border: 2px solid var(--line);
+                background: var(--card);
+                color: var(--ink);
+                font: 600 13px inherit
+            }
+
+            .map {
+                display: grid;
+                grid-template-columns: repeat(6,1fr);
+                gap: 5px
+            }
+
+            .t {
+                aspect-ratio: 1;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                font-weight: 700;
+                color: var(--ink);
+                background: var(--line)
+            }
+
+            .t b {
+                font-size: 13px
+            }
+
+            .t.x {
+                background: none
+            }
+
+            .seg {
+                display: flex;
+                height: 22px;
+                border-radius: 99px;
+                overflow: hidden;
+                margin: 6px 0
+            }
+
+            .seg i {
+                display: block
+            }
+
+            .demo {
+                background: color-mix(in srgb,var(--ac2) 25%,var(--card));
+                border-radius: 12px;
+                padding: 8px 12px;
+                font-size: 12px;
+                margin-bottom: 6px
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            const ENDPOINT = ''
+              , DEMO_ON = true;
+            // set ENDPOINT to your backend URL (POST JSON) when self-hosting; set DEMO_ON=false for real data
+            const U = {
+                like: 'You’re like {x}% of students from {r}|Siz {r} o‘quvchilarining {x}% iga o‘xshaysiz|Ты похож на {x}% учеников: {r}',
+                few2: 'Not enough answers from your region yet — you’re one of the first!|Viloyatingizdan javoblar hali kam — siz birinchilardansiz!|Из твоего региона пока мало ответов — ты среди первых!',
+                next: 'Next|Keyingi|Далее',
+                fin: 'See my profile|Natijani ko‘rish|Мой профиль',
+                many: 'Pick all that apply|Hammasini tanlang|Выбери всё подходящее',
+                rate: '1 = not important · 5 = key|1 = muhim emas · 5 = juda muhim|1 = неважно · 5 = ключевое',
+                opt: 'Optional — skip anything|Ixtiyoriy — istalganini o‘tkazing|Необязательно — можно пропустить',
+                prof: 'Your profile|Sizning profilingiz|Твой профиль',
+                top: 'Top priority|Asosiy ustuvorlik|Главный приоритет',
+                share: 'Share|Ulashish|Поделиться',
+                stat: 'Live stats|Statistika|Статистика',
+                again: 'Retake|Qayta o‘tish|Пройти заново',
+                cp: 'Copied!|Nusxalandi!|Скопировано!',
+                back: 'Back to quiz|Testga qaytish|К тесту',
+                st: 'Student stats|O‘quvchilar statistikasi|Статистика учеников',
+                dm: 'Demo data (synthetic) — layout preview only|Demo ma’lumot (sun’iy) — faqat ko‘rinish uchun|Демо-данные (синтетика) — только макет',
+                uc: 'Urban vs rural — % wanting to go abroad|Shahar va qishloq — chet elni xohlaganlar %|Город и село — % хотят за границу',
+                ur: 'Urban|Shahar|Город',
+                ru: 'Rural|Qishloq|Село',
+                few: 'too few (<20)|juda kam (<20)|мало (<20)',
+                ar: 'All regions|Barcha viloyatlar|Все регионы',
+                al: 'Everyone|Hammasi|Все',
+                ur2: 'Urban + rural|Shahar + qishloq|Город + село',
+                m: 'Male|Erkak|Муж.',
+                f: 'Female|Ayol|Жен.',
+                sp: 'Split of answers|Javoblar taqsimoti|Распределение',
+                dr: 'Dream vs reality — abroad if money were no issue|Orzu va haqiqat — pul muammo bo‘lmasa chet el|Мечта и реальность — за границу, если бы деньги не мешали',
+                now: 'Now|Hozir|Сейчас',
+                dq: 'If money didn’t matter|Pul muammo bo‘lmasa|Если бы деньги не мешали',
+                mp: 'Map: % abroad by region|Xarita: viloyatlar bo‘yicha % chet el|Карта: % за границу по регионам',
+                n: 'Uzbekistan|O‘zbekiston|Узбекистан',
+                ab: 'Abroad|Chet el|За границей',
+                ns: 'Not sure|Bilmayman|Не уверены'
+            };
+            const REG = ['|Karakalpakstan|Qoraqalpog‘iston|Каракалпакстан', '|Navoi|Navoiy|Навои', '|Jizzakh|Jizzax|Джизак', '|Syrdarya|Sirdaryo|Сырдарья', '|Tashkent region|Toshkent viloyati|Ташкентская обл.', '|Namangan|Namangan|Наманган', '|Khorezm|Xorazm|Хорезм', '|Bukhara|Buxoro|Бухара', '|Samarkand|Samarqand|Самарканд', '|Tashkent city|Toshkent shahri|г. Ташкент', '|Fergana|Farg‘ona|Фергана', '|Andijan|Andijon|Андижан', '|Kashkadarya|Qashqadaryo|Кашкадарья', '|Surkhandarya|Surxondaryo|Сурхандарья']
+              , CODE = 'KAR NAV JIZ SYR TAR NAM KHO BUK SAM TAS FER AND KAS SUR'.split(' ')
+              , CELLS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, -1, 12, 13, -1, -1, -1];
+            const YN = ['✅|Yes|Ha|Да', '❌|No|Yo‘q|Нет'];
+            const Q = {
+                hook: {
+                    big: 1,
+                    q: 'Where do you see yourself studying?|Qayerda o‘qishni xohlaysiz?|Где ты видишь своё обучение?',
+                    o: ['🇺🇿|Uzbekistan|O‘zbekistonda|В Узбекистане', '✈️|Abroad|Chet elda|За границей', '🤔|Not sure yet|Hali bilmayman|Пока не знаю']
+                },
+                country: {
+                    q: 'Which country?|Qaysi davlat?|Какая страна?',
+                    o: ['🇰🇷|South Korea|Janubiy Koreya|Южная Корея', '🇩🇪|Germany|Germaniya|Германия', '🇺🇸|USA / Canada|AQSh / Kanada|США / Канада', '🇬🇧|UK / Europe|Britaniya / Yevropa|Британия / Европа', '🇹🇷|Turkey|Turkiya|Турция', '🇷🇺|Russia / Kazakhstan|Rossiya / Qozog‘iston|Россия / Казахстан', '🌏|Other|Boshqa|Другая']
+                },
+                reason: {
+                    q: 'Main reason to go?|Ketishning asosiy sababi?|Главная причина?',
+                    o: ['🎓|Better education|Sifatli ta’lim|Лучшее образование', '💼|Career abroad|Chet elda karyera|Карьера за рубежом', '🌍|New experience|Yangi tajriba|Новый опыт', '💰|Higher income|Yuqori daromad|Больше дохода', '🔬|My field is stronger there|Mening sohamda kuchliroq|Моя сфера сильнее там']
+                },
+                fund: {
+                    q: 'How will you pay?|Qanday to‘laysiz?|Как будешь платить?',
+                    o: ['👨‍👩‍👧|Family|Oila|Семья', '🏅|Scholarship|Grant / stipendiya|Грант / стипендия', '🏦|Loan|Kredit|Кредит', '🤷|Don’t know yet|Hali bilmayman|Пока не знаю']
+                },
+                fear: {
+                    q: 'Biggest fear?|Eng katta qo‘rquv?|Главный страх?',
+                    o: ['💸|Money|Pul|Деньги', '🗣️|Language|Til|Язык', '🥺|Homesickness|Sog‘inch|Тоска по дому', '📄|Visa / admission|Viza / qabul|Виза / поступление', '🚫|Family says no|Oila qarshi|Семья против']
+                },
+                city: {
+                    q: 'Where in Uzbekistan?|O‘zbekistonning qayerida?|Где в Узбекистане?',
+                    o: ['🏙️|Tashkent|Toshkent|Ташкент', '🏛️|Samarkand|Samarqand|Самарканд', '🌄|Another big city|Boshqa katta shahar|Другой крупный город', '🏡|My home region|O‘z viloyatim|Родной регион']
+                },
+                why: {
+                    q: 'Why stay?|Nega qolasiz?|Почему остаёшься?',
+                    o: ['👪|Family|Oila|Семья', '💵|Cost|Arzonligi|Стоимость', '🎯|Good programs here|Yaxshi dasturlar|Хорошие программы', '🕌|Culture|Madaniyat|Культура', '🛡️|Safety|Xavfsizlik|Безопасность']
+                },
+                leave: {
+                    q: 'What would make you consider leaving?|Nima sizni ketishga undaydi?|Что заставит задуматься об отъезде?',
+                    o: ['🏅|A full scholarship|To‘liq grant|Полный грант', '💼|Jobs abroad|Chet eldagi ish|Работа за рубежом', '🏫|Weak universities here|Mahalliy vuzlar sustligi|Слабые вузы здесь', '🚪|Nothing — I’m staying|Hech narsa — qolaman|Ничего — остаюсь']
+                },
+                tip: {
+                    q: 'What would tip your decision?|Qaror nimaga bog‘liq?|От чего зависит решение?',
+                    o: ['🏅|A scholarship|Grant|Грант', '👪|Family’s opinion|Oila fikri|Мнение семьи', '💼|Job prospects|Ish istiqboli|Перспективы работы', '💰|Money|Pul|Деньги', '🗣️|My English level|Ingliz tilim|Уровень английского']
+                },
+                dream: {
+                    q: 'If money were no issue, you’d study…|Pul muammo bo‘lmasa, o‘qirdingiz…|Если бы деньги не мешали, ты бы учился…',
+                    o: ['🇺🇿|In Uzbekistan|O‘zbekistonda|В Узбекистане', '✈️|Abroad|Chet elda|За границей', '🤔|No idea|Bilmayman|Не знаю']
+                },
+                prio: {
+                    t: 'r',
+                    q: 'What matters most to you?|Siz uchun nima muhim?|Что для тебя важнее всего?'
+                },
+                infl: {
+                    t: 'm',
+                    q: 'Who shapes your decision?|Qaroringizga kim ta’sir qiladi?|Кто влияет на твоё решение?',
+                    o: ['👪|Parents|Ota-ona|Родители', '🧑‍🏫|Teachers|O‘qituvchilar|Учителя', '🧑‍🤝‍🧑|Friends|Do‘stlar|Друзья', '📱|Social media|Ijtimoiy tarmoq|Соцсети', '🧠|Just me|Faqat o‘zim|Только я']
+                },
+                ret: {
+                    q: 'Will you work in Uzbekistan afterwards?|Keyin O‘zbekistonda ishlaysizmi?|Будешь работать в Узбекистане потом?',
+                    o: ['✅|Yes|Ha|Да', '🤔|Maybe|Balki|Возможно', '❌|No|Yo‘q|Нет']
+                },
+                region: {
+                    q: 'Which region are you from?|Qaysi viloyatdansiz?|Из какого ты региона?',
+                    o: REG
+                },
+                settle: {
+                    q: 'You live in a…|Siz yashaysiz…|Ты живёшь в…',
+                    o: ['🏡|Village|Qishloqda|Селе', '🏘️|Town|Shaharchada|Небольшом городе', '🏙️|Big city|Katta shaharda|Большом городе']
+                },
+                grade: {
+                    q: 'Where are you now?|Hozir qayerdasiz?|На каком ты этапе?',
+                    o: ['📘|9th grade|9-sinf|9 класс', '📗|10th grade|10-sinf|10 класс', '📙|11th grade|11-sinf|11 класс', '🏫|College / 1st year|Kollej / 1-kurs|Колледж / 1 курс', '🎓|University|Universitet|Университет']
+                },
+                eng: {
+                    q: 'Your English level?|Ingliz tili darajangiz?|Твой уровень английского?',
+                    o: ['🌱|Beginner (A1–A2)|Boshlang‘ich|Начальный', '📗|Intermediate (B1)|O‘rta (B1)|Средний (B1)', '📘|Upper (B2)|Yuqori (B2)|Выше среднего (B2)', '🏆|C1+ / have IELTS|C1+ / IELTS bor|C1+ / есть IELTS', '📅|Planning IELTS|IELTS rejalayman|Планирую IELTS']
+                },
+                rel: {
+                    q: 'Relatives already abroad?|Qarindoshlaringiz chet elda?|Есть родственники за границей?',
+                    o: YN
+                },
+                extra: {
+                    t: 'x',
+                    q: 'Last bit — all optional|Oxirgi qism — ixtiyoriy|Последнее — по желанию'
+                }
+            };
+            const XG = [['g', 'Gender|Jins|Пол', ['♂️|Male|Erkak|Муж.', '♀️|Female|Ayol|Жен.']], ['sc', 'School type|Maktab turi|Тип школы', ['🏫|Public|Davlat|Гос.', '⭐|Specialized|Ixtisoslashgan|Спец.', '🔒|Private|Xususiy|Частная']], ['pe', 'Parents’ education|Ota-ona ma’lumoti|Образование родителей', ['|School|Maktab|Школа', '|College|Kollej|Колледж', '|University|Oliy|Высшее']], ['inc', 'Family income|Oila daromadi|Доход семьи', ['|Lower|Past|Ниже', '|Middle|O‘rta|Средний', '|Higher|Yuqori|Выше']]];
+            const PR = ['🎓|Education quality|Ta’lim sifati|Качество образования', '💰|Cost|Narx|Стоимость', '🛡️|Safety|Xavfsizlik|Безопасность', '💼|Job prospects|Ish istiqboli|Работа', '👪|Family|Oila|Семья', '🕌|Culture|Madaniyat|Культура', '🗣️|Language|Til|Язык'];
+            const P = [['🏗️', 'The Builder|Quruvchi|Строитель', 'You believe the future is built at home.|Kelajak shu yerda qurilishiga ishonasiz.|Ты веришь, что будущее строится дома.'], ['🧭', 'The Explorer|Kashfiyotchi|Исследователь', 'You want to see how the world learns.|Dunyo qanday o‘qishini ko‘rmoqchisiz.|Ты хочешь увидеть, как учится мир.'], ['🗺️', 'The Navigator|Yo‘lboshchi|Навигатор', 'Still plotting your route — and that’s smart.|Yo‘lingizni hali tanlayapsiz — bu aqlli.|Ты ещё выбираешь маршрут — и это разумно.'], ['🌉', 'The Bridge|Ko‘prik|Мост', 'Learn out there, build back here.|U yerda o‘rgan, bu yerda qur.|Учись там, строй здесь.']];
+            const $ = s => document.querySelector(s)
+              , app = () => $('#app');
+            let L = 0
+              , a = {}
+              , i = 0
+              , done = 0
+              , view = 'q'
+              , busy = 0
+              , F = {
+                r: -1,
+                u: -1,
+                g: -1
+            }
+              , LOCAL = [];
+            try {
+                LOCAL = JSON.parse(localStorage.getItem('sc_rows') || '[]')
+            } catch (e) {}
+            const tr = s => s.split('|')[L]
+              , lab = s => {
+                const p = s.split('|');
+                return p[L + 1] || p[1]
+            }
+              , em = s => s.split('|')[0];
+            function rng(s) {
+                return () => {
+                    s |= 0;
+                    s = s + 0x6D2B79F5 | 0;
+                    let t = Math.imul(s ^ s >>> 15, 1 | s);
+                    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+                    return ((t ^ t >>> 14) >>> 0) / 4294967296
+                }
+            }
+            const DEMO = [];
+            {
+                const R = rng(7)
+                  , pool = [9, 9, 9, 9, 8, 8, 10, 10, 11, 5, 4, 7, 12, 6, 0, 1, 2, 3, 13, 10, 11];
+                for (let k = 0; k < 520; k++) {
+                    const r = pool[Math.floor(R() * pool.length)]
+                      , s = r == 9 ? 2 : Math.floor(R() * 3)
+                      , pa = .2 + (s > 0 ? .2 : 0) + (r == 9 ? .1 : 0)
+                      , x = R()
+                      , p = x < pa ? 1 : x < pa + .22 ? 2 : 0;
+                    DEMO.push({
+                        p,
+                        r,
+                        s,
+                        g: R() < .08 ? -1 : R() < .5 ? 0 : 1,
+                        d: p == 1 ? 1 : R() < .45 ? 1 : R() < .5 ? 0 : 2
+                    })
+                }
+            }
+            const rows = () => (DEMO_ON ? DEMO : []).concat(LOCAL);
+            const steps = () => ['hook', ...(a.hook == 1 ? ['country', 'reason', 'fund', 'fear'] : a.hook == 0 ? ['city', 'why', 'leave'] : ['tip']), 'dream', 'prio', 'infl', 'ret', 'region', 'settle', 'grade', 'eng', 'rel', 'extra'];
+            const lg = () => `<div class=lg>${['EN', 'UZ', 'RU'].map( (x, j) => `<button class="${j == L ? 'on' : ''}" onclick="L=${j};render()">${x}</button>`).join('')}</div>`;
+            function render() {
+                if (view == 's')
+                    return stats();
+                const S = steps()
+                  , k = S[i]
+                  , q = Q[k]
+                  , w = done ? 100 : 100 * i / S.length;
+                let h = `<div class=top>${i && !done ? '<button class=ic onclick="i--;render()">‹</button>' : ''}<div class=bar><i style="width:${w}%"></i></div>${lg()}<button class=ic onclick="view=\'s\';render()">📊</button></div>`;
+                if (done)
+                    return app().innerHTML = h + result();
+                h += `<div class=scr><h1>${tr(q.q)}</h1>`;
+                if (q.t == 'r') {
+                    a.prio = a.prio || Array(7).fill(3);
+                    h += `<p class=hint>${tr(U.rate)}</p>` + PR.map( (o, j) => `<div class=r><span>${em(o)} ${lab(o)}</span><div class=d>${[1, 2, 3, 4, 5].map(v => `<i class="${v <= a.prio[j] ? 'on' : ''}" onclick="rate(${j},${v},this)"></i>`).join('')}</div></div>`).join('') + `<button class=btn onclick="i++;render()">${tr(U.next)}</button>`
+                } else if (q.t == 'x')
+                    h += `<p class=hint>${tr(U.opt)}</p><div class=xg>` + XG.map( ([g,t,o]) => `<h3>${tr(t)}</h3><div class=g>${o.map( (x, j) => `<button class="o ${a[g] === j ? 's' : ''}" onclick="xp('${g}',${j},this)">${em(x) ? `<b>${em(x)}</b>` : ''}${lab(x)}</button>`).join('')}</div>`).join('') + `</div><button class=btn onclick="fin()">${tr(U.fin)}</button>`;
+                else {
+                    if (q.t == 'm')
+                        h += `<p class=hint>${tr(U.many)}</p>`;
+                    h += `<div class="g ${q.big ? 'big' : ''}">` + q.o.map( (o, j) => {
+                        const on = q.t == 'm' ? (a[k] || []).includes(j) : a[k] === j;
+                        return `<button class="o ${on ? 's' : ''}" onclick="${q.t == 'm' ? 'tog' : 'pick'}('${k}',${j},this)">${em(o) ? `<b>${em(o)}</b>` : ''}${lab(o)}</button>`
+                    }
+                    ).join('') + '</div>';
+                    if (q.t == 'm')
+                        h += `<button class=btn onclick="i++;render()">${tr(U.next)}</button>`
+                }
+                app().innerHTML = h + '</div>'
+            }
+            function pick(k, v, el) {
+                if (busy)
+                    return;
+                busy = 1;
+                a[k] = v;
+                el.classList.add('s');
+                setTimeout( () => {
+                    busy = 0;
+                    i++;
+                    render()
+                }
+                , 260)
+            }
+            function tog(k, v, el) {
+                const x = a[k] = a[k] || []
+                  , n = x.indexOf(v);
+                n < 0 ? x.push(v) : x.splice(n, 1);
+                el.classList.toggle('s')
+            }
+            function rate(j, v, el) {
+                a.prio[j] = v;
+                [...el.parentNode.children].forEach( (c, n) => c.classList.toggle('on', n < v))
+            }
+            function xp(g, v, el) {
+                const on = a[g] === v;
+                a[g] = on ? undefined : v;
+                [...el.parentNode.children].forEach(c => c.classList.remove('s'));
+                if (!on)
+                    el.classList.add('s')
+            }
+            function fin() {
+                const r = {
+                    p: a.hook,
+                    r: a.region,
+                    s: a.settle,
+                    g: a.g ?? -1,
+                    d: a.dream
+                };
+                LOCAL.push(r);
+                try {
+                    localStorage.setItem('sc_rows', JSON.stringify(LOCAL))
+                } catch (e) {}
+                if (ENDPOINT)
+                    fetch(ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ...a,
+                            t: Date.now()
+                        })
+                    }).catch( () => {}
+                    );
+                done = 1;
+                render()
+            }
+            function result() {
+                const pr = a.hook == 0 ? 0 : a.hook == 2 ? 2 : a.ret == 0 ? 3 : 1
+                  , p = P[pr]
+                  , pv = a.prio
+                  , t = pv.indexOf(Math.max(...pv))
+                  , same = rows().filter(x => x.r == a.region)
+                  , n = same.length
+                  , x = Math.round(100 * same.filter(y => y.p == a.hook).length / Math.max(n, 1));
+                const cmp = n >= 20 ? tr(U.like).replace('{x}', x).replace('{r}', lab(REG[a.region])) : tr(U.few2);
+                window.shr = `${p[0]} ${tr(p[1])} — Study Compass`;
+                return `<div class=scr><div class=card><div><small>${tr(U.prof)}</small></div><div><div class=e>${p[0]}</div><h2>${tr(p[1])}</h2><p>${tr(p[2])}</p><span class=chip>${tr(U.top)}: ${em(PR[t])} ${lab(PR[t])}</span></div><div class=cmp>${cmp}</div></div>
+ <button class=btn onclick="share()" id=sb>${tr(U.share)}</button><button class="btn alt" onclick="view=\'s\';render()">📊 ${tr(U.stat)}</button><button class="btn alt" onclick="a={};i=0;done=0;render()">${tr(U.again)}</button></div>`
+            }
+            async function share() {
+                try {
+                    if (navigator.share)
+                        return await navigator.share({
+                            text: shr,
+                            url: location.href
+                        });
+                    await navigator.clipboard.writeText(shr + ' ' + location.href);
+                    $('#sb').textContent = tr(U.cp)
+                } catch (e) {}
+            }
+            function stats() {
+                const o = (v, t) => `<option value="${v}" ${F[arguments[2]] == v ? 'selected' : ''}>${t}</option>`;
+                app().innerHTML = `<div class=top><button class=ic onclick="view='q';render()">‹</button><div style="flex:1;font-weight:800">${tr(U.st)}</div>${lg()}</div>${DEMO_ON ? `<div class=demo>${tr(U.dm)}</div>` : ''}
+ <div class=flt><select onchange="F.r=+this.value;sd()"><option value=-1>${tr(U.ar)}</option>${REG.map( (r, j) => `<option value=${j} ${F.r == j ? 'selected' : ''}>${lab(r)}</option>`).join('')}</select>
+ <select onchange="F.u=+this.value;sd()"><option value=-1>${tr(U.ur2)}</option><option value=1 ${F.u == 1 ? 'selected' : ''}>${tr(U.ur)}</option><option value=0 ${F.u == 0 ? 'selected' : ''}>${tr(U.ru)}</option></select>
+ <select onchange="F.g=+this.value;sd()"><option value=-1>${tr(U.al)}</option><option value=0 ${F.g == 0 ? 'selected' : ''}>${tr(U.m)}</option><option value=1 ${F.g == 1 ? 'selected' : ''}>${tr(U.f)}</option></select></div><div id=sd></div>`;
+                sd()
+            }
+            function sd() {
+                const R = rows()
+                  , fg = x => F.g < 0 || x.g == F.g
+                  , fu = x => F.u < 0 || (F.u == 1) == (x.s > 0)
+                  , A = R.filter(x => fg(x) && (F.r < 0 || x.r == F.r))
+                  , sel = A.filter(fu)
+                  , n = sel.length;
+                const bar = (l, rs, f=x => x.p == 1) => {
+                    const m = rs.length
+                      , ok = m >= 20
+                      , p = ok ? Math.round(100 * rs.filter(f).length / m) : 0;
+                    return `<div class=bl><span>${l}</span><span>${ok ? p + '%' : '—'}</span></div><div class=bar2 style="flex:none"><i style="width:${p}%"></i></div><small>n=${m}${ok ? '' : ' · ' + tr(U.few)}</small>`
+                }
+                ;
+                const c = p => sel.filter(x => x.p == p).length
+                  , pc = p => n >= 20 ? Math.round(100 * c(p) / n) : 0
+                  , col = ['var(--ac)', 'var(--ac2)', 'var(--mut)'];
+                const mp = R.filter(x => fg(x) && fu(x));
+                $('#sd').innerHTML = `<div class=sec><h2>${tr(U.uc)}</h2>${bar('🏙️ ' + tr(U.ur), A.filter(x => x.s > 0))}${bar('🏡 ' + tr(U.ru), A.filter(x => x.s == 0))}</div>
+ <div class=sec><h2>${tr(U.sp)} · n=${n}</h2>${n < 20 ? `<small>${tr(U.few)}</small>` : `<div class=seg>${[0, 1, 2].map(p => `<i style="width:${pc(p)}%;background:${col[p]}"></i>`).join('')}</div><small>🇺🇿 ${tr(U.n)} ${pc(0)}% · ✈️ ${tr(U.ab)} ${pc(1)}% · 🤔 ${tr(U.ns)} ${pc(2)}%</small>`}</div>
+ <div class=sec><h2>${tr(U.dr)}</h2>${bar(tr(U.now), sel)}${bar(tr(U.dq), sel, x => x.d == 1)}</div>
+ <div class=sec><h2>${tr(U.mp)}</h2><div class=map>${CELLS.map(r => {
+                    if (r < 0)
+                        return '<div class="t x"></div>';
+                    const g = mp.filter(x => x.r == r)
+                      , m = g.length
+                      , p = m >= 20 ? Math.round(100 * g.filter(x => x.p == 1).length / m) : null;
+                    return `<div class=t title="n=${m}" style="${p === null ? '' : `background:color-mix(in srgb,var(--ac2) ${Math.min(100, p * 1.6)}%,var(--card))`}">${CODE[r]}<b>${p === null ? 'n<20' : p + '%'}</b></div>`
+                }
+                ).join('')}</div></div>`
+            }
+            render();
+        </script>
+    </body>
+</html>
